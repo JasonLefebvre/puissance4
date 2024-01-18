@@ -2,9 +2,6 @@ package fr.jason.puissance.Board;
 
 import fr.jason.puissance.Token.Token;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Board {
 
     private Token[][] grid;
@@ -23,6 +20,17 @@ public class Board {
 
     public void addToken(Token[][] grid, int column, int line, Token token){
         grid[column][line] = token;
+    }
+
+    public boolean isFull(){
+        for (Token[] column : grid){
+            for (Token token : column) {
+                if (token == null) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /*

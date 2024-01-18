@@ -5,6 +5,7 @@ import fr.jason.puissance.Player.Player;
 import fr.jason.puissance.State;
 import fr.jason.puissance.Token.Token;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class GameManager {
@@ -23,6 +24,12 @@ public class GameManager {
 
     public boolean isState(State state){
         return this.state == state;
+    }
+
+    public void startGame(){
+        inizializeGame();
+        gameLoop();
+        finishGame();
     }
 
     public void inizializeGame(){
@@ -48,12 +55,37 @@ public class GameManager {
             Token[][] grid = new Token[7][6];
 
             Board board = new Board(grid);
-        }
 
+            while (!board.isFull()){
+                System.out.println("Colonne : ");
+                int column = new Scanner(System.in).nextInt();
+
+                for (int index = 0; index < board.getGrid().length; index++){
+                    if (board.getGrid()[column][index] == null){
+                        board.addToken(board.getGrid(), column, index, new Token(players[0], new int[column][index])); //players[0] test
+                    }
+                }
+
+            }
+        }
         return winner;
+    }
+
+    public String finishGame(){
+        return "test";
     }
 
     public Player[] getPlayers() {
         return players;
+    }
+
+    public Player changePlayer(List<Player> players){
+        Player currentPlayer = null;
+        if (currentPlayer == players.get(0)){
+            currentPlayer = players.get(1);
+        } else {
+            currentPlayer = players.get(0);
+        }
+        return currentPlayer;
     }
 }
