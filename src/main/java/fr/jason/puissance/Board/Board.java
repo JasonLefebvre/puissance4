@@ -22,7 +22,24 @@ public class Board {
         grid[column][line] = token;
     }
 
-    public boolean isFull(){
+    /* public boolean checkOnAddToken(Token token){
+        int[][] cosToken = token.getCoordinates();
+        Player playerToken = token.getPlayer();
+
+        if (grid[cosToken[0]][cosToken[cosToken[1] -1]])
+        return false;
+    }*/
+
+    public boolean columnIsFull(Token[] column){
+        for (Token token : column){
+            if (token == null){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isFull(Token[][] grid){
         for (Token[] column : grid){
             for (Token token : column) {
                 if (token == null) {
